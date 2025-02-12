@@ -1,0 +1,43 @@
+# Proyecto - Estructuras de Datos
+
+## Descripcion
+Este proyecto corresponde a la **Entrega 0** del curso de **Estructuras de Datos**. Implementa una **interfaz de usuario basada en comandos** para interactuar con el sistema de procesamiento de imagenes.
+
+El programa recibe comandos a traves de la terminal, valida su formato y muestra la respuesta correspondiente. No realiza operaciones sobre imagenes, ya que solo se enfoca en la gestion de comandos y validacion de parametros.
+
+---
+
+## Autores
+- Santiago Hernandez
+- Juan Esteban
+- Esteban Navas
+
+---
+
+## Comandos Disponibles
+
+El programa acepta los siguientes comandos:
+
+| Comando | Descripcion |
+|---------|------------|
+| `cargar_imagen <nombre>` | Carga una imagen con el nombre especificado |
+| `cargar_volumen <nombre_base> <n_im>` | Carga una serie ordenada de imagenes numeradas |
+| `info_imagen` | Muestra informacion de la imagen cargada |
+| `proyeccion2D <direccion> <criterio> <nombre_archivo.pgm>` | Genera una proyeccion 2D del volumen cargado |
+| `codificar_imagen <nombre_archivo.huf>` | Codifica y guarda la imagen en formato comprimido |
+| `decodificar_archivo <nombre_archivo.huf> <nombre_imagen.pgm>` | Decodifica un archivo y genera una imagen PGM |
+| `segmentar <salida_imagen.pgm> <sx1 sy1 sl1> ... <sx5 sy5 sl5>` | Segmenta la imagen cargada usando hasta 5 semillas |
+| `ayuda` | Muestra la lista de comandos disponibles |
+| `ayuda <comando>` | Muestra detalles sobre el uso de un comando especifico |
+| `exit` | Cierra el programa |
+
+---
+
+## Instalacion y Compilacion en Linux
+
+Para compilar y ejecutar este programa en **Linux**, sigue los siguientes pasos:
+
+### **Paso 1: Clonar el repositorio**
+Si aun no tienes Git instalado, puedes hacerlo con:
+```sh
+sudo apt update && sudo apt install git -y
