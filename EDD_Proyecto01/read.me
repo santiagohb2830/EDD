@@ -3,7 +3,7 @@
 ## Descripcion
 Este proyecto corresponde a la **Entrega 0** del curso de **Estructuras de Datos**. Implementa una **interfaz de usuario basada en comandos** para interactuar con el sistema de procesamiento de imagenes.
 
-El programa recibe comandos a traves de la terminal, valida su formato y muestra la respuesta correspondiente. No realiza operaciones sobre imagenes, ya que solo se enfoca en la gestion de comandos y validacion de parametros.
+El programa recibe comandos a traves de la terminal, valida su formato y muestra la respuesta. No realiza operaciones sobre imagenes, solo se enfoca en la gestion de comandos y validacion de parametros.
 
 ---
 
@@ -33,11 +33,48 @@ El programa acepta los siguientes comandos:
 
 ---
 
-## Instalacion y Compilacion en Linux
+PASO A PASO PARA COMPILAR Y EJECUTAR EL PROYECTO EN LINUX
 
-Para compilar y ejecutar este programa en **Linux**, sigue los siguientes pasos:
+1. ABRIR LA TERMINAL
+   - Presiona "Ctrl + Alt + T" o busca "Terminal" en el menú de aplicaciones.
 
-### **Paso 1: Clonar el repositorio**
-Si aun no tienes Git instalado, puedes hacerlo con:
-```sh
-sudo apt update && sudo apt install git -y
+2. INSTALAR EL COMPILADOR G++
+   - Escribe el siguiente comando y presiona "Enter":
+     sudo apt update && sudo apt install g++ -y
+   - Para verificar la instalación, ejecuta:
+     g++ --version
+   - Si ves un número de versión en pantalla, el compilador está instalado correctamente.
+
+3. INSTALAR GIT
+   - Si Git no está instalado, instálalo con:
+     sudo apt install git -y
+   - Verifica la instalación ejecutando:
+     git --version
+
+4. CLONAR EL REPOSITORIO DEL PROYECTO
+   - Para descargar el código fuente, ejecuta:
+     git clone https://github.com/tu_usuario/proyecto-estructuras.git
+   - Luego, entra en el directorio del proyecto:
+     cd proyecto-estructuras
+
+5. COMPILAR EL CÓDIGO
+   - Dentro del directorio del proyecto, compila el código con:
+     g++ -o proyecto main.cpp
+   - Si no hay errores en la compilación, se generará un ejecutable llamado "proyecto".
+
+6. EJECUTAR EL PROGRAMA
+   - Para iniciar el programa, usa el siguiente comando:
+     ./proyecto
+   - Esto mostrará un indicador "$", lo que significa que el sistema está listo para recibir comandos.
+
+7. PROBAR LOS COMANDOS
+   - Puedes ingresar comandos en la terminal, por ejemplo:
+     $ cargar_imagen ejemplo.pgm
+   - Si introduces un comando incorrecto, el sistema mostrará un mensaje de error.
+
+8. SALIR DEL PROGRAMA
+   - Para cerrar el programa, simplemente escribe:
+     $ exit
+
+FIN.
+
