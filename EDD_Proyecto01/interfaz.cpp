@@ -187,6 +187,8 @@ imagen cargarImg(string nombre){
 volumen cargarVol(string nombre_base,int n){
 	volumen vol;
 	imagen img;
+	vol.H = 0;
+	vol.W = 0;
 	vol.n_im = n;
 	for(int i=1; i <= n;i++){
 		if(n<=9)
@@ -195,13 +197,15 @@ volumen cargarVol(string nombre_base,int n){
 			img = cargarImg(nombre_base + to_string(i) + ".pmg");
 		
 		vol.imgv.emplace_back(img);
+		vol.H = (img.H > vol.H) ? img.H : vol.H;
+		vol.W = (img.W > vol.W) ? img.W : vol.W;
 	}
-	vol.H = img.H;
-	vol.W = img.W;
+	
+
 
 	for(int i=0; i<n; i++){
-		for(int j=0; j<vol.H; j++){
-			for(int k=0; k<vol.W; k++){
+		for(int j=0; j<vol.imgv[i].H; j++){
+			for(int k=0; k<vol.imgv[i].W; k++){
 				cout << vol.imgv[i].val[j][k] << " ";
 			}
 			cout<<endl;
