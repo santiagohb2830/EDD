@@ -187,8 +187,6 @@ imagen cargarImg(string nombre){
 volumen cargarVol(string nombre_base,int n){
 	volumen vol;
 	imagen img;
-	vol.H = 0;
-	vol.W = 0;
 	vol.n_im = n;
 	for(int i=1; i <= n;i++){
 		if(n<=9)
