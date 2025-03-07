@@ -1,3 +1,10 @@
+/**********************************
+Fecha 5 de Marzo 2025
+Autor: Santiago Hernandez, Juan Esteban, Esteban Navas
+Materia: Estructuras de Datos
+Tema: Primera entrega Proyecto
+***********************************/
+
 #include <iostream>
 #include <sstream>
 #include <vector>
