@@ -1,8 +1,8 @@
 /**********************************
 Fecha 5 de Marzo 2025
-Autor: Santiago Hernandez, Juan Esteban, Esteban Navas
+Autor: Santiago Hernandez
 Materia: Estructuras de Datos
-Tema: Primera entrega Proyecto
+Tema: Laboratorio en clase
 ***********************************/
 #include "arbolBinario.h"
 
