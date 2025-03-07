@@ -13,45 +13,56 @@ Tema: Primera entrega Proyecto
 
 using namespace std;
 
+// Declaración de la función para obtener la entrada del usuario
 vector<string> userIn();
 
-int main(int argc, char *argv[]) {	
-    imagen img;
-    volumen vol;
-    string n_img, n_vol;
+int main(int argc, char *argv[]) {    
+    imagen img; // Variable para almacenar una imagen
+    volumen vol; // Variable para almacenar un volumen de imágenes
+    string n_img, n_vol; // Variables para almacenar los nombres de la imagen y el volumen cargados
 
+    // Bucle principal del programa
     while (true) {
+        // Obtener el comando del usuario
         vector<string> comando = userIn();
 
+        // Comando para salir del programa
         if (comando[0] == "exit") {
             cout << "\nsaliendo\n";
-            exit(0);
+            exit(0); // Terminar el programa
         }
+        // Comando para cargar una imagen
         else if (comando[0] == "cargar_imagen" && comando.size() == 2) {
-            img = cargarImg(comando[1]);
-            n_img = comando[1];
+            img = cargarImg(comando[1]); // Cargar la imagen desde el archivo
+            n_img = comando[1]; // Guardar el nombre de la imagen
             cout << "\nse cargo " << comando[1] << " exitosamente\n" << endl;
         }
+        // Comando para cargar un volumen de imágenes
         else if (comando[0] == "cargar_volumen" && comando.size() == 3) {
-            vol = cargarVol(comando[1], stoi(comando[2]));
-            n_vol = comando[1];
+            vol = cargarVol(comando[1], stoi(comando[2])); // Cargar el volumen
+            n_vol = comando[1]; // Guardar el nombre base del volumen
             cout << "\nse cargo " << comando[1] << " con " << comando[2] << " imagenes exitosamente\n" << endl;
         }
+        // Comando para mostrar información de la imagen cargada
         else if (comando[0] == "info_imagen" && comando.size() == 1) {
             cout << endl << n_img << "\nancho: " << img.W << "\nalto: " << img.H << endl;
         }
+        // Comando para mostrar información del volumen cargado
         else if (comando[0] == "info_volumen" && comando.size() == 1) {
             cout << endl << n_vol << "\nancho: " << vol.W << "\nalto: " << vol.H << "\ntamaño: " << vol.n_im << endl;
         }
+        // Comando para generar una proyección 2D a partir del volumen
         else if (comando[0] == "proyeccion2D" && comando.size() == 4) {
             if (vol.n_im == 0) {
                 cout << "\nEl volumen aún no ha sido cargado en memoria.\n" << endl;
             } else {
+                // Generar la proyección 2D y guardarla en un archivo
                 imagen resultado = proyeccion2D(vol, comando[1], comando[2]);
                 guardarPGM(resultado, comando[3]);
                 cout << "\nLa proyección 2D ha sido generada y almacenada en " << comando[3] << endl << endl;
             }
         }
+        // Comando para mostrar la lista de comandos disponibles
         else if (comando[0] == "ayuda" && comando.size() == 1) {
             cout << "\n*****comandos*****\n"
                  << "cargar_imagen\n"
@@ -64,6 +75,7 @@ int main(int argc, char *argv[]) {
                  << "segmentar\n"
                  << "exit\n\n";
         }
+        // Comando para mostrar ayuda específica sobre un comando
         else if (comando[0] == "ayuda" && comando.size() > 1) {
             if (comando[1] == "cargar_imagen")
                 cout << "\ncargar_imagen (nombre_imagen)\n\n"
@@ -100,6 +112,7 @@ int main(int argc, char *argv[]) {
             else
                 cout << "\ncomando inexistente\n" << endl;
         }
+        // Mensaje para comandos inválidos
         else {
             cout << "\ncomando invalido\n" << endl;
         }
@@ -110,12 +123,12 @@ int main(int argc, char *argv[]) {
 // Función para obtener la entrada del usuario
 vector<string> userIn() {
     string in;
-    cout << "$ ";
-    getline(cin, in);
-    stringstream ss(in);
+    cout << "$ "; // Mostrar el prompt
+    getline(cin, in); // Leer la entrada del usuario
+    stringstream ss(in); // Usar un stringstream para dividir la entrada en tokens
     vector<string> comando;
     while (ss >> in) {
-        comando.push_back(in);
+        comando.push_back(in); // Almacenar cada token en el vector
     }
-    return comando;
+    return comando; // Retornar el vector de tokens
 }
