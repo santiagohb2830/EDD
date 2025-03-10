@@ -20,6 +20,9 @@ int main(int argc, char *argv[]) {
     imagen img; // Variable para almacenar una imagen
     volumen vol; // Variable para almacenar un volumen de imágenes
     string n_img, n_vol; // Variables para almacenar los nombres de la imagen y el volumen cargados
+    cout << "Bienvenido al programa, escriba el comando (ayuda) para ver los comandos disponibles\n"
+	 << "Si desea recibir información de un comando en especifico, use el comando (ayuda)\n"
+	 <<" Seguido del comando a consultar. Por ejemplo: (ayuda cargar_volumen)\n\n";
 
     // Bucle principal del programa
     while (true) {
