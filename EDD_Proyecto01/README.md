@@ -9,7 +9,7 @@ El programa recibe comandos a traves de la terminal, valida su formato y muestra
 
 ## Autores
 - Santiago Hernandez
-- Juan Esteban
+- Juan Esteban Bello
 - Esteban Navas
 
 ---
