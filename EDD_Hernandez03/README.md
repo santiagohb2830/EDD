@@ -15,16 +15,16 @@ Este repositorio contiene el desarrollo completo del taller de estructuras de da
 ## 📁 Estructura del repositorio
 
 
-├── arbol_binario/            # Archivos fuente del árbol binario
-├── arbol_avl/                # Archivos del árbol AVL
-├── arbol_expresion/          # Árbol de expresión matemática
-├── arbol_binario_alt/        # Variante de implementación binaria
-├── quadtree/                 # Archivos del QuadTree
-├── kdtree/                   # Archivos del KD-Tree
-├── red_black_tree/           # Implementación del árbol Red-Black
-├── pruebas/                  # Capturas y pruebas realizadas
-├── documentación/            # Informe final en PDF y .tex/.docx
-├── README.md                 # Este archivo
+- arbol_binario/            # Archivos fuente del árbol binario
+- arbol_avl/                # Archivos del árbol AVL
+- arbol_expresion/          # Árbol de expresión matemática
+- arbol_binario_alt/        # Variante de implementación binaria
+- quadtree/                 # Archivos del QuadTree
+- kdtree/                   # Archivos del KD-Tree
+- red_black_tree/           # Implementación del árbol Red-Black
+- pruebas/                  # Capturas y pruebas realizadas
+- documentación/            # Informe final en PDF y .tex/.docx
+- README.md                 # Este archivo
 
 ## 🧪 Compilación y ejecución
 
