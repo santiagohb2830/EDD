@@ -14,8 +14,7 @@ Este repositorio contiene el desarrollo completo del taller de estructuras de da
 
 ## 📁 Estructura del repositorio
 
-/<raiz del proyecto>
-│
+
 ├── arbol_binario/            # Archivos fuente del árbol binario
 ├── arbol_avl/                # Archivos del árbol AVL
 ├── arbol_expresion/          # Árbol de expresión matemática
