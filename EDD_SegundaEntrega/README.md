@@ -42,7 +42,7 @@ Este proyecto corresponde a la segunda entrega del curso de **Estructuras de Dat
 Desde la terminal, ubicarse en el directorio que contiene los archivos del proyecto y ejecutar el siguiente comando:
 
 ```bash
-g++ -std=c++11 -o prog main.cpp imagen.h imagen.hxx volumen.h volumen.hxx proyeccion.h proyeccion.hxx huffman.h huffman.hxx
+g++ main.cpp -o prog
 ```
 
 ### Ejecución
