@@ -35,7 +35,7 @@ Abrir una terminal en la carpeta del proyecto y ejecutar:
 
 ```bash
 # Compilar
-g++ -std=c++17 -Wall main.cpp MapaCitaciones.cpp -o miPrograma
+g++ main.cpp MapaCitaciones.cpp -o miPrograma
 
 # Ejecutar
 ./miPrograma
