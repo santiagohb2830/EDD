@@ -4,7 +4,7 @@ Este repositorio contiene la solución al Taller de Grafos de la asignatura Estr
 
 ## Estructura de archivos
 
-* `Articulo.h` / `Articulo.cpp` (opcional): define el TAD `Articulo`, con su identificador y lista de referencias.
+* `Articulo.h` / `Articulo.cpp`: define el TAD `Articulo`, con su identificador y lista de referencias.
 * `MapaCitaciones.h` / `MapaCitaciones.cpp`: define el TAD `MapaCitaciones` y los algoritmos:
 
   1. `articuloMasCitado()`
