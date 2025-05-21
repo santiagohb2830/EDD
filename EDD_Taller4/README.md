@@ -24,10 +24,6 @@ Este repositorio contiene la solución al Taller de Grafos de la asignatura Estr
    * **Índice de referenciación**: calcula (entrantes) / (0.5 \* salientes).
    * **Citaciones indirectas**: hace un BFS para medir la distancia en saltos y cuenta los que están a ≥2 saltos.
 
-## Requisitos
-
-* Ubuntu Linux
-* Compilador C++ (g++ compatible con C++17)
 
 ## Compilación y ejecución
 
