@@ -1,134 +1,132 @@
 # Procesamiento y Segmentación de Imágenes PGM
 
-Este repositorio contiene la implementación en C++ de un conjunto de herramientas de línea de comandos para el procesamiento de imágenes en formato PGM (P2/P5). El proyecto se divide en tres componentes principales:
+Este proyecto ofrece un conjunto de herramientas de línea de comandos escritas en C++ para el manejo integral de imágenes en formato PGM (P2) y volúmenes formados por múltiples capas PPM/PGM. Está organizado en tres módulos principales:
 
-1. **Carga e Información**: lectura de imágenes y volúmenes PGM, consulta de metadatos.
-2. **Proyección 2D y Compresión Huffman**: generación de vistas 2D desde volúmenes 3D y compresión/descompresión de imágenes mediante Huffman.
-3. **Segmentación**: identificación de regiones conectadas a partir de semillas de usuario usando un grafo implícito y Dijkstra multi-fuente.
-
----
-
-## Características
-
-- Lectura y validación de archivos PGM (formatos P2 y P5).
-- Módulo de consulta de metadatos (ancho, alto, valor máximo, número de capas).
-- Generación de proyecciones mínimas, máximas y promedio desde volúmenes.
-- Compresión y descompresión de imágenes con algoritmo de Huffman.
-- Segmentación de imágenes basada en propagación de etiquetas con Dijkstra multi-fuente.
-- Manejo de errores y comandos de ayuda integrados (`--help`).
+1. **Carga e Información**: lectura y guardado de imágenes PGM; carga de volúmenes PPM/PGM; consulta de metadatos.
+2. **Proyección 2D y Compresión Huffman**: generación de imágenes 2D según criterios (mínimo, máximo, promedio, mediana) desde volúmenes 3D; compresión y descompresión de imágenes con el algoritmo de Huffman.
+3. **Segmentación**: identificación automática de regiones conectadas en una imagen PGM mediante un grafo implícito y un algoritmo de Dijkstra multi-fuente.
 
 ---
 
-## Requisitos
+## Vista general
 
-- Compilador: GNU g++ (versión mínima 4.0.0; recomendado 7.0 o superior)
-- Sistema operativo: Linux o macOS (Windows con adaptaciones de ruta y compilación)
-- Herramientas: make (opcional)
+Al iniciar el programa ejecutable `pgm_tool`, el usuario tiene acceso a un menú interactivo por línea de comandos donde puede cargar imágenes o volúmenes, consultar sus metadatos, aplicar proyecciones, comprimir o descomprimir con Huffman, y finalmente segmentar una imagen indicando hasta cinco semillas con coordenadas (x, y) y una etiqueta (1–255).
+
+Cada módulo se implementa con TADs claros y separados (por ejemplo, `imagen`, `volumen`, `NodoHuffman`, `Grafo`), y funciones que siguen rigurosamente entradas, salidas, precondiciones y postcondiciones, como se documenta en el informe de diseño.
 
 ---
 
-## Instalación
+## Instalación y compilación
 
-Clonar este repositorio y compilar todos los módulos:
+Requisitos:
+- GNU g++ 4.0.0 o superior
+- make (opcional)
+
+Clonar y compilar:
 
 ```bash
 $ git clone https://github.com/tu-usuario/proyecto-pgm.git
 $ cd proyecto-pgm
+$ make         # si ya existe Makefile
+# o directamente:
 $ g++ main.cpp imagen.hxx proyeccion.hxx huffman.hxx dijkstra.hxx -std=c++17 -O2 -o pgm_tool
 ```
 
-Si prefieres usar `make`, crear un `Makefile` con este comando de compilación.
+---
+
+## Uso y ejemplos
+
+Tras compilar, ejecutar el binario:
+```bash
+$ ./pgm_tool
+``` 
+Aparecerá la interfaz interactiva; usar `ayuda` para ver comandos.
+
+### Carga y consulta
+
+```bash
+$ cargar_imagen imagen.pgm
+Se cargó la imagen 'imagen.pgm' correctamente
+
+$ info_imagen
+Nombre: imagen.pgm
+Dimensiones: 512 x 512
+Valor máximo: 255
+
+$ cargar_volumen slice_ 10
+Se cargó el volumen con 10 imágenes correctamente
+
+$ info_volumen
+Nombre base: slice_
+Dimensiones: 512 x 512
+Capas: 10
+```
+
+### Proyección 2D
+
+```bash
+$ proyeccion2D z promedio salida.pgm
+Proyección (promedio) generada: 'salida.pgm'
+``` 
+Criterios válidos: `minimo`, `maximo`, `promedio`, `mediana`.
+
+### Compresión y descompresión Huffman
+
+```bash
+$ codificar_imagen salida.huf
+La imagen ha sido comprimida: 'salida.huf'
+
+$ decodificar_archivo salida.huf restaurada.pgm
+Imagen reconstruida y guardada como 'restaurada.pgm'
+``` 
+Los archivos `.huf` incluyen metadatos de tamaño para reconstruir correctamente la imagen.
+
+### Segmentación de imágenes
+
+```bash
+$ segmentar resultado.pgm 30 30 10 100 50 20
+Segmentación completada. Archivo guardado en 'resultado.pgm'
+```
+- Sintaxis: `segmentar <output.pgm> sx1 sy1 et1 [sx2 sy2 et2 ...]`
+- Máximo 5 semillas, etiqueta entre 1 y 255.
 
 ---
 
-## Uso
+## Estructura del repositorio
 
-Ejecutar el binario `pgm_tool` seguido del subcomando y sus parámetros:
-
-### 1. Cargar imagen
-```bash
-$ ./pgm_tool cargar_imagen input.pgm
-Se cargó correctamente input.pgm
-```
-
-### 2. Consultar metadatos
-```bash
-$ ./pgm_tool info_imagen
-Ancho: 512  Alto: 512  Max: 255
-```
-
-### 3. Cargar volumen
-```bash
-$ ./pgm_tool cargar_volumen slice_ 30
-Volumen cargado correctamente con 30 capas
-```
-
-### 4. Proyección 2D
-```bash
-$ ./pgm_tool proyeccion2D min output.pgm
-Proyección (min) guardada en output.pgm
-```
-
-### 5. Compresión Huffman
-```bash
-$ ./pgm_tool codificar_imagen compressed.huf
-Codificación completada: compressed.huf
-```
-
-### 6. Descompresión Huffman
-```bash
-$ ./pgm_tool decodificar_archivo compressed.huf restored.pgm
-Decodificación completada: restored.pgm
-```
-
-### 7. Segmentación
-```bash
-$ ./pgm_tool segmentar out.pgm 30 30 10 100 50 20
-Segmentación completada. Archivo guardado en out.pgm
-```
-- Primer valor: nombre de salida (`out.pgm`).
-- Tripletas: `x y etiqueta` para cada semilla (entre 1 y 5 semillas).
-
-Para ver más detalles de uso y opciones disponibles:
-```bash
-$ ./pgm_tool --help
-```
-
----
-
-## Plan de pruebas
-
-Se incluye un plan de pruebas detallado en el documento `PlanDePruebas.pdf`, con casos normales, de límite y de error. Ejemplo:
-
-| Caso   | Comando                                    | Descripción                                    | Esperado                   |
-|--------|--------------------------------------------|------------------------------------------------|----------------------------|
-| CP01   | `segmentar out.pgm 10 10 5`               | Menos de 4 parámetros de semilla              | Mensaje de error y salidacode != 0 |
-| CP05   | `proyeccion2D avg output.pgm`             | Proyección promedio desde volumen cargado     | Archivo `output.pgm` válido |
-
----
-
-## Estructura del proyecto
-
-```
+```plaintext
 proyecto-pgm/
-├── main.cpp
-├── imagen.hxx
-├── proyeccion.hxx
-├── huffman.hxx
-├── dijkstra.hxx
-├── Makefile      # (opcional)
-├── PlanDePruebas.pdf
-└── README.md
+├── main.cpp             # Lógica del menú interactivo y dispatch de comandos
+├── imagen.h/.hxx        # TAD imagen y volumen, lectura/escritura PGM/PPM
+├── proyeccion.h/.hxx    # Implementación de proyecciones 2D
+├── huffman.h/.hxx       # Árbol de Huffman y compresión/descompresión
+├── dijkstra.h/.hxx      # Segmentación basada en Dijkstra multi-fuente
+├── Makefile             # Reglas de compilación (opcional)
+├── README.md            # Descripción general y guía rápida
+└── docs/                # Documentación: diseño, plan de pruebas, TADs, UML
 ```
 
 ---
 
-## Contribuciones
+## Documentación adicional
 
-Se agradecen sugerencias y correcciones. Abrir _issues_ o _pull requests_ para aportar.
+En la carpeta `docs/` se incluyen:
+- **Diseño.pdf**: descripción de entradas, salidas, pre/postcondiciones, TADs y diagramas UML.
+- **PlanDePruebas.pdf**: casos de prueba detallados para cada comando.
+- **ActaEvaluacion.pdf**: registro de observaciones de la primera y segunda entrega y correcciones aplicadas.
 
 ---
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto está bajo licencia MIT. Ver `LICENSE` para más detalles.
+
+---
+
+## Autores
+
+- Santiago Hernández
+- Juan Esteban Bello
+- Esteban Navas
+
+Para consultas o contribuciones, abre un _issue_ o un _pull request_. ¡Gracias por tu interés!
