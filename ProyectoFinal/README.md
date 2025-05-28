@@ -27,8 +27,6 @@ Un sistema completo de procesamiento y manipulación de imágenes desarrollado e
 
 - **Compilador**: G++ con soporte para C++17 o superior
 - **Sistema Operativo**: Linux, macOS, Windows (con MinGW)
-- **Memoria**: Mínimo 512 MB de RAM (recomendado 1GB+ para volúmenes grandes)
-- **Espacio en Disco**: Variable según el tamaño de las imágenes
 
 ## 🚀 Instalación y Compilación
 
